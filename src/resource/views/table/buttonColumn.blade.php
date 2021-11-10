@@ -2,9 +2,10 @@
 
 <td
 @if($column->classes != null)  {{ $column->classes }}  @endif
+
 >
-    @if($column->content->wrapLink)
-        <a href="/administration/warehouse-rooms/{{ $l->id }}">
+    @if($column->content->link != null)
+        <a href="{{\J3dyy\CrudHelper\Helper::parseLink($column->content->link,$entity)}}">
     @endif
             <button
                 {!!  $column->content->classes != null ?  "class='$button->classes'" : '' !!}
@@ -15,7 +16,7 @@
             >
                 {!! $column->content->content !!}
             </button>
-    @if($column->content->wrapLink)
+    @if($column->content->link != null)
         </a>
     @endif
 </td>

@@ -7,19 +7,21 @@ use Illuminate\View\View;
 class Button extends Element
 {
 
-    public $wrapLink = false;
 
-    public function __construct($key, $content, $classes = null, $id = null, array $dataAttrs = [], bool $wrapLink = false)
+    public $link = null;
+
+    public function __construct($key, $content, $classes = null, $id = null, array $dataAttrs = [], string $link = null)
     {
         parent::__construct(ElementTypes::BUTTON, $key, $content, $classes, $id, $dataAttrs);
-        $this->wrapLink = $wrapLink;
+        $this->link = $link;
     }
 
-    public function asLink()
+    public function asLink($url)
     {
-        $this->wrapLink = true;
+        $this->link = $url;
         return $this;
     }
+
 
     function transform(array $entity): View
     {

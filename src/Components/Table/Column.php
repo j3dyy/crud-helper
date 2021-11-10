@@ -19,8 +19,8 @@ class Column extends Element
         }
     }
 
-    public function button($key, $content, $classes = null, $id = null, $dataAttrs = [], $wrapLink = false){
-       $this->content = new Button($key,$content,$classes,$id,$dataAttrs,$wrapLink);
+    public function button($content, $classes = null, $id = null, $dataAttrs = [], $link = null){
+       $this->content = new Button($this->key,$content,$classes,$id,$dataAttrs,$link);
        return $this;
     }
 
