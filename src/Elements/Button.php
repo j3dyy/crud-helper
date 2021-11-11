@@ -6,8 +6,6 @@ use Illuminate\View\View;
 
 class Button extends Element
 {
-
-
     public $link = null;
 
     public function __construct($key, $content, $classes = null, $id = null, array $dataAttrs = [], string $link = null)
@@ -25,6 +23,17 @@ class Button extends Element
 
     function transform(array $entity): View
     {
-        return view('administration');
+        return view('crudHelper::elements.button',[
+            'button' => $this,
+            'entity' => $entity
+        ]);
+    }
+
+    public static function linkButton($key,$content,$link){
+        return new Button($key,$content,null, null, [], $link );
+    }
+
+    public static function standard($key,$content){
+        return new Button($key,$content);
     }
 }

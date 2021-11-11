@@ -20,6 +20,26 @@ abstract class  Component
         $this->id = $id;
     }
 
+    /**
+     * @param string|null $classes
+     */
+    public function setClasses(?string $classes): self
+    {
+        $this->classes = $classes;
+        return $this;
+    }
+
+    /**
+     * @param string|null $id
+     */
+    public function setId(?string $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+
+
     abstract function render(): View;
 
 }

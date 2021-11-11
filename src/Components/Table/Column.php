@@ -3,41 +3,34 @@
 namespace J3dyy\CrudHelper\Components\Table;
 
 use Illuminate\View\View;
-use J3dyy\CrudHelper\Elements\Button;
 use J3dyy\CrudHelper\Elements\Element;
 use J3dyy\CrudHelper\Elements\ElementTypes;
 
 class Column extends Element
 {
 
-    public function __construct($key, $content, $className = null, $id = null, $label = null)
+    public function __construct($type, $key, $content, $classes = null, $id = null, array $dataAttrs = [])
     {
-        parent::__construct(ElementTypes::COLUMN, $key, $content, $className, $id);
-
-        if ($label != null){
-            $this->label = $label;
-        }
+        parent::__construct($type, $key, $content, $classes, $id, $dataAttrs);
     }
 
-    public function button($content, $classes = null, $id = null, $dataAttrs = [], $link = null){
-       $this->content = new Button($this->key,$content,$classes,$id,$dataAttrs,$link);
-       return $this;
+
+    public static function raw($key,$content, $classes = null){
+        return new Column(ElementTypes::COLUMN,$key,$content, $classes);
+    }
+
+    public static function html($key,$label,$html, $classes = null){
+        $htmlColumn = new Column(ElementTypes::BUTTON,$key,$html,$classes);
+        $htmlColumn->setLabel($label);
+        return $htmlColumn;
     }
 
     function transform(array $entity): View
     {
-        $path = 'crudHelper::table.column';
-        if ($this->content instanceof Button){
-            $path = 'crudHelper::table.buttonColumn';
-        }
-
-        return view($path,[
+        return view('crudHelper::table.column',[
             'column'=>$this,
             'entity'=>$entity
         ]);
     }
 
-    public static function make($key, $content, $className = null, $id = null){
-        return new Column($key,$content,$className,$id);
-    }
 }

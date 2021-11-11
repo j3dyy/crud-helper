@@ -13,7 +13,7 @@ class Helper
      * @param $link
      * @param array $params
      * @return string
-     * @description searching {wildcards} into link string and replacing it given $params
+     * @description searching {wildcards} into string and replacing it given $params
      */
     public static function parseLink($link, array $params = []): string{
         $matches = [];

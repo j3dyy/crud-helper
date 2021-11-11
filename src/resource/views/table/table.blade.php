@@ -5,13 +5,14 @@
     {!! $table->id !== null ? 'id="'.$table->id.'"' : '' !!}
 >
     @foreach($table->columns as $c)
-        <th
+        <th data-column="{{$c->key}}"
         @if($c->classes != null)
-            {{ $c->classes }}
+            class="{{ $c->classes }}"
             @endif
         >
             {{$c->label}}
         </th>
+
     @endforeach
    @foreach($table->items as $i)
        <tr data-id="{{ $i['id'] }}">
