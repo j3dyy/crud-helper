@@ -6,6 +6,7 @@
 >
     @foreach($table->columns as $c)
         <th data-column="{{$c->key}}"
+            data-type="{{$c->type}}"
         @if($c->classes != null)
             class="{{ $c->classes }}"
             @endif
@@ -14,7 +15,8 @@
         </th>
 
     @endforeach
-   @foreach($table->items as $i)
+
+    @foreach($table->items as $i)
        <tr data-id="{{ $i['id'] }}">
            @foreach($table->columns as $column)
                {!! $column->transform($i) !!}

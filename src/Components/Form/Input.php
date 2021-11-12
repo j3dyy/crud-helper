@@ -21,6 +21,10 @@ class Input extends Element
         return new Input(ElementTypes::TEXT, $key,$value, $classes);
     }
 
+    public static function image($key, $value, $classes = 'form-control'){
+        return new Input(ElementTypes::IMAGE, $key,$value,$classes);
+    }
+
     public static function hidden($key,$value){
         return new Input(ElementTypes::HIDDEN, $key, $value);
     }

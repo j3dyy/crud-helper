@@ -18,7 +18,8 @@ class Table extends Component
         $this->items = $items;
     }
 
-    function render(): View
+
+    public function render(): View
     {
         return view('crudHelper::table.table',['table'=>$this]);
     }
