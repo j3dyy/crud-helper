@@ -26,6 +26,7 @@ class Column extends Element
     }
 
 
+
     function transform(array $entity): View
     {
         return view('crudHelper::table.column',[
