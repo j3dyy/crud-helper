@@ -12,14 +12,17 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use J3dyy\CrudHelper\Components\ActionType;
 use J3dyy\CrudHelper\Components\Form\Form;
+use J3dyy\CrudHelper\Helpers\Controller\InteractsToLayout;
+use J3dyy\CrudHelper\View\Viewable;
 
 abstract class CrudController extends Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, InteractsToLayout ;
 
     protected $columns = [];
 
     protected $model = null;
+
 
 
     public function __construct(array $columns = [])
@@ -80,11 +83,16 @@ abstract class CrudController extends Controller
         ]);
     }
 
+    protected function render(Viewable $layout)
+    {
+        return $layout->render();
+    }
+
     /**
      * @param Request $request
      * @return JsonResponse
      */
-    protected function getForm(Request $request): JsonResponse {
+    public function getForm(Request $request): JsonResponse {
         return response()->json([
             'form' => $this->fillForm($request)
         ]);

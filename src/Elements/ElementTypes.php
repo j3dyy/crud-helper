@@ -5,7 +5,9 @@ namespace J3dyy\CrudHelper\Elements;
 
 class ElementTypes
 {
+    const RAW = 'RAW';
     const TEXT = 'text';
+    const BOOLEAN = 'boolean';
     const IMAGE = 'file';
     const FILE = 'file';
     const HIDDEN = 'hidden';

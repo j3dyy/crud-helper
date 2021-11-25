@@ -12,7 +12,9 @@
             "email": "mr.nizharadze@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "doctrine/orm": "^2.10"
+    },
     "extra": {
         "laravel": {
             "providers": [

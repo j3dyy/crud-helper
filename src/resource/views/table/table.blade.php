@@ -5,6 +5,7 @@
     {!! $table->id !== null ? 'id="'.$table->id.'"' : '' !!}
 >
     @foreach($table->columns as $c)
+        @if(is_string($c)) @continue @endif
         <th data-column="{{$c->key}}"
             data-type="{{$c->type}}"
         @if($c->classes != null)
