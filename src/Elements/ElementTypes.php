@@ -7,6 +7,7 @@ class ElementTypes
 {
     const RAW = 'RAW';
     const TEXT = 'text';
+    const TEXTAREA = 'textarea';
     const BOOLEAN = 'boolean';
     const IMAGE = 'file';
     const FILE = 'file';
@@ -17,4 +18,5 @@ class ElementTypes
     const OPTION = 'option';
     const COLUMN = 'column';
     const BUTTON = 'button';
+    const SUBMIT = 'submit';
 }

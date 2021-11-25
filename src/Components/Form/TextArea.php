@@ -6,7 +6,7 @@ use Illuminate\View\View;
 use J3dyy\CrudHelper\Elements\Element;
 use J3dyy\CrudHelper\Elements\ElementTypes;
 
-class Input extends Element
+class TextArea extends Element
 {
     public $validator = '';
     public $value = '';
@@ -29,10 +29,11 @@ class Input extends Element
         return new Input(ElementTypes::HIDDEN, $key, $value);
     }
 
+
     function transform(array $entity): View
     {
-        return view('crudHelper::form.input',[
-            'input' => $this,
+        return view('crudHelper::form.textarea',[
+            'textarea' => $this,
             'entity' => $entity
         ]);
     }

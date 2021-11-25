@@ -36,6 +36,6 @@ class Form extends Component
 
     function render(): View
     {
-        return view('crudHelper::form.form');
+        return view('crudHelper::form.form',['form'=>$this]);
     }
 }
