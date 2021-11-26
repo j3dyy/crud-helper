@@ -19,6 +19,8 @@
                     @if(isset($relationalEntity[$exploded[1]]))
                         {{ $relationalEntity[$exploded[1]] }}
                     @endif
+                    @else
+{{--                    {!! dd($exploded) !!}--}}
                 @endif
             @endif
         @endif

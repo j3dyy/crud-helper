@@ -23,7 +23,8 @@
         $('.hint').tooltip();
     });
 </script>
-@if($entity['isactive'])
+
+@if($entity[$statusElement->key])
     <div class="dot green hint center"  data-toggle="tooltip" data-placement="top" title="ჩართული"></div>
 @else
     <div class="dot red hint center"  data-toggle="tooltip" data-placement="top" title="გამორთული"></div>
