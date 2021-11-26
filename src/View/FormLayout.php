@@ -22,8 +22,7 @@ class FormLayout extends Layout
 
     public static function of( EloquentModel $model = null, string $classes = null, string $id = null ){
         $form = new Form('','',$classes,$id);
-
-        $formFields = self::parseAndCreateFormFields($model,$form);
+        $form = self::parseAndCreateFormFields($model,$form);
 
         return new FormLayout(
             new ViewModel($form)

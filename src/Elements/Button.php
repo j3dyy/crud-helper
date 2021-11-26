@@ -8,17 +8,19 @@ class Button extends Element
 {
     public $link = null;
 
-    public function __construct($key, $content, $classes = null, $id = null, array $dataAttrs = [], string $link = null)
+    public function __construct($key, $content, $classes = null, $id = null, array $dataAttrs = [], string $link = null, string $type = ElementTypes::BUTTON)
     {
-        parent::__construct(ElementTypes::BUTTON, $key, $content, $classes, $id, $dataAttrs);
+        parent::__construct($type, $key, $content, $classes, $id, $dataAttrs);
         $this->link = $link;
     }
+
 
     public function asLink($url)
     {
         $this->link = $url;
         return $this;
     }
+
 
 
     function transform(array $entity): View
