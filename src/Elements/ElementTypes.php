@@ -17,4 +17,5 @@ class ElementTypes
     const OPTION = 'option';
     const COLUMN = 'column';
     const BUTTON = 'button';
+    const HTML = 'button';
 }

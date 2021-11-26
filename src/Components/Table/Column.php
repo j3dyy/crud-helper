@@ -20,7 +20,7 @@ class Column extends Element
     }
 
     public static function html($key,$label,$html, $classes = null){
-        $htmlColumn = new Column(ElementTypes::BUTTON,$key,$html,$classes);
+        $htmlColumn = new Column(ElementTypes::HTML, $key,$html,$classes);
         $htmlColumn->setLabel($label);
         return $htmlColumn;
     }

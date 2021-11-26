@@ -5,10 +5,9 @@ namespace J3dyy\CrudHelper\Elements;
 class ConfirmableDeleteButton extends Button
 {
 
-    public function __construct($key, $route = null)
+    public function __construct($key, $route = null, $classes = 'btn btn-danger ', $content = '<span class="glyphicon glyphicon-trash"></span>')
     {
-        $content = '<span class="glyphicon glyphicon-trash"></span>';
-        $classes = 'btn btn-danger delete-entity';
+        $classes .= ' delete-entity';
         $dataAttrs = [
             'route'=> $route,
             'remove-selector'=> 'tr[data-id={id}]',
