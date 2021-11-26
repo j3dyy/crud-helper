@@ -23,7 +23,7 @@ class Button extends Element
 
 
 
-    function transform(array $entity): View
+    public function transform(array $entity): View
     {
         return view('crudHelper::elements.button',[
             'button' => $this,

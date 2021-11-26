@@ -2,7 +2,8 @@
  data-column="{{$column->key}}"
  {!! $column->classes !== null ? 'class="'.$column->classes.'"' : '' !!}
 >
-    @if($column->type == \J3dyy\CrudHelper\Elements\ElementTypes::COLUMN)
+
+    @if($column->type == J3dyy\CrudHelper\Elements\ElementTypes::COLUMN)
         @if($column->key == 'isactive' || $column->key == 'isActive')
             @if($entity[$column->key] == 1) {{__('base.active')}} @else {{__('base.inactive')}} @endif
         @else
@@ -21,7 +22,7 @@
                 @endif
             @endif
         @endif
-    @elseif($column->type == \J3dyy\CrudHelper\Elements\ElementTypes::BUTTON)
+    @elseif($column->type == J3dyy\CrudHelper\Elements\ElementTypes::BUTTON || $column->type == J3dyy\CrudHelper\Elements\ElementTypes::HTML)
         {{ $column->content->transform($entity)  }}
     @endif
 </td>
