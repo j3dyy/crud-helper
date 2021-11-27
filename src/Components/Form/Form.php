@@ -9,8 +9,8 @@ class Form extends Component
 {
     public  $action;
     public  $method;
-    public  $elements = [];
-    public  $actionButtons = [];
+    public  $elements;
+    public  $actionButtons;
 
 
     public function __construct(string $action = '', string $method = 'GET', string $classes = null, string $id = null)
@@ -18,6 +18,8 @@ class Form extends Component
         parent::__construct($classes,$id);
         $this->action = $action;
         $this->method = $method;
+        $this->elements = collect([]);
+        $this->actionButtons = collect([]);
     }
 
     public function addElements(array $elements){

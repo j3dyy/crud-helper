@@ -23,8 +23,6 @@ abstract class CrudController extends Controller
 
     protected $model = null;
 
-
-
     public function __construct(array $columns = [])
     {
         $model = $this->model();
