@@ -1,6 +1,6 @@
 <?php
 
-namespace J3dyy\CrudHelper\Components\Form;
+namespace J3dyy\CrudHelper\Components\Form\Types;
 
 use Illuminate\View\View;
 use J3dyy\CrudHelper\Elements\Element;
@@ -8,6 +8,8 @@ use J3dyy\CrudHelper\Elements\ElementTypes;
 
 class Input extends Element
 {
+    use TypeCaster;
+
     public $validator = '';
     public $value = '';
 
@@ -16,18 +18,24 @@ class Input extends Element
     public $nullable = false;
 
 
-    public function __construct($type, $key, $content, $classes = null, $id = null, array $dataAttrs = [])
+    public function __construct($type = '', $key = '', $content = '', $classes = null, $id = null, array $dataAttrs = [])
     {
         $this->value = $content;
         parent::__construct($type, $key, $content, $classes, $id, $dataAttrs);
     }
 
     public static function formLayout($item, $content = ''){
-        $input = new Input($item['type'],$item['name'],$content);
-        $input->setDefault($item['default']);
-        $input->setLength($item['length']);
-        if ($item['hidden'])
-            $input->setType('hidden');
+        $input = self::castTo($item['type']);
+        if ($input != null){
+
+            $input->setType($item['type']);
+            $input->setKey($item['name']);
+            $input->setContent($content);
+            $input->setDefault($item['default']);
+            $input->setLength($item['length']);
+            if ($item['hidden'])
+                $input->setType('hidden');
+        }
 
         return $input;
     }
@@ -72,7 +80,7 @@ class Input extends Element
 
     function transform(array $entity): View
     {
-        return view('crudHelper::form.input',[
+        return view('crudHelper::form.type.input',[
             'input' => $this,
             'entity' => $entity
         ]);

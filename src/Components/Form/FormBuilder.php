@@ -3,6 +3,7 @@
 namespace J3dyy\CrudHelper\Components\Form;
 
 use Illuminate\Database\Eloquent\Model;
+use J3dyy\CrudHelper\Components\Form\Types\Input;
 use J3dyy\CrudHelper\Elements\Element;
 use J3dyy\CrudHelper\Tools\Collectable;
 use J3dyy\CrudHelper\Tools\ModelTools;
@@ -21,10 +22,9 @@ class FormBuilder
         $fields = ModelTools::getFields(...$model);
 
         foreach ($fields as $type=>$items){
-
             foreach ($items as $name => $data){
                 $input = Input::formLayout($data);
-                $this->add($type,$input);
+                $input != null  ? $this->add($type,$input) : '' ;
             }
         }
 

@@ -1,9 +1,12 @@
 @if(isset($form))
-{{--{!! dd($form) !!}--}}
 <form class="form-horizontal {!! $form->classes !== null ? $form->classes : '' !!}" {!! $form->id !== null ? 'id="'.$form->id.'"' : '' !!} action="{{$form->action}}" method="{{$form->method}}">
     <div class="card-body">
         @foreach($form->elements as $type => $fields)
-            @include("crudHelper::form.type.$type",['fields' => $fields])
+            {!! dd($form->elements) !!}
+            @include("crudHelper::form.fields",[
+                    'fields' => $fields,
+                    'type'  => $type
+            ])
         @endforeach
     </div>
     <!-- /.card-body -->

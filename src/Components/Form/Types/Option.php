@@ -1,12 +1,12 @@
 <?php
 
-namespace J3dyy\CrudHelper\Components\Form;
+namespace J3dyy\CrudHelper\Components\Form\Types;
 
 use Illuminate\View\View;
 use J3dyy\CrudHelper\Elements\Element;
 use J3dyy\CrudHelper\Elements\ElementTypes;
 
-class Option extends Element
+class Option extends Input
 {
     public $selected = false;
 
