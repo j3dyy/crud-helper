@@ -23,7 +23,7 @@ trait ColumnHelper
 
         $dbColumns = self::getDbColumns($model->getTable());
         foreach ($dbColumns as $dbColumn){
-            //here we need detect other types
+            //here we need detect other type
             $columns[] = Column::raw($dbColumn,$dbColumn);
         }
         return $columns;
@@ -57,7 +57,7 @@ trait ColumnHelper
                         new Input(ElementTypes::BOOLEAN,$field,__('laravel-crud.'.$field))
                     );
                 }
-                //other types
+                //other type
                 // todo field mapper
             }
 
@@ -72,7 +72,7 @@ trait ColumnHelper
                         new TextArea(ElementTypes::TEXTAREA, $translatedField, __('laravel-crud.'.$translatedField))
                     );
                 }
-                //other types
+                //other type
                 // todo field mapper
             }
         }else{

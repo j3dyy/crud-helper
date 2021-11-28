@@ -26,6 +26,9 @@ class Input extends Element
         $input = new Input($item['type'],$item['name'],$content);
         $input->setDefault($item['default']);
         $input->setLength($item['length']);
+        if ($item['hidden'])
+            $input->setType('hidden');
+
         return $input;
     }
 

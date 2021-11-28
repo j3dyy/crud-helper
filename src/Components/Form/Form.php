@@ -4,6 +4,7 @@ namespace J3dyy\CrudHelper\Components\Form;
 use Illuminate\View\View;
 use J3dyy\CrudHelper\Components\Component;
 use J3dyy\CrudHelper\Elements\Element;
+use J3dyy\CrudHelper\Tools\Collectable;
 
 class Form extends Component
 {
@@ -22,7 +23,7 @@ class Form extends Component
         $this->actionButtons = collect([]);
     }
 
-    public function addElements(array $elements){
+    public function addElements(Collectable $elements){
         $this->elements = $elements;
     }
 

@@ -36,29 +36,15 @@ class FormLayout extends Layout
         //out of the box laravel-localized package support
         if ($model instanceof Localized){
             $relatedModels[] =  TranslationTool::createTranslation($model);
-        }else{
-            dd("not handled");
         }
-//        $form = self::parseAndCreateFormFields($model,$form);
 
         //fetch all field for form
-        $fields = ModelTools::getFields($model,...$relatedModels);
-
+        //$form = self::parseAndCreateFormFields($model,$form);
         $formBuilder = new FormBuilder('','',$classes,$id);
+        $formBuilder->fields(...$relatedModels);
 
-
-
-        //iterate over models
-        $fields->each(function ($field, $modelName) use ($formBuilder) {
-            //iterate over fields
-            $field->each(function ($item, $key) use ($modelName,$formBuilder){
-                $formBuilder->add( $modelName, Input::formLayout($item) );
-            });
-        });
-
-        dd($formBuilder);
         return new FormLayout(
-            new ViewModel($form)
+            new ViewModel($formBuilder->build())
         );
     }
 

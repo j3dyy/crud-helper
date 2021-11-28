@@ -2,8 +2,10 @@
 
 namespace J3dyy\CrudHelper\Components\Form;
 
+use Illuminate\Database\Eloquent\Model;
 use J3dyy\CrudHelper\Elements\Element;
 use J3dyy\CrudHelper\Tools\Collectable;
+use J3dyy\CrudHelper\Tools\ModelTools;
 
 class FormBuilder
 {
@@ -15,22 +17,38 @@ class FormBuilder
         $this->form = new Form($action, $method,$classes,$id);
     }
 
-    public function add(string $position, Element $element){
-        $this->grid->get($position) != null ?: $this->grid->put($position, new Collectable());
+    public function fields(Model ...$model) {
+        $fields = ModelTools::getFields(...$model);
 
-        $this->grid->get($position)->push($element);
+        foreach ($fields as $type=>$items){
+
+            foreach ($items as $name => $data){
+                $input = Input::formLayout($data);
+                $this->add($type,$input);
+            }
+        }
+
+        $this->form->addElements($this->grid);
+        return $this;
     }
 
+    public function add($type, Element $element){
+        $this->grid->get($type) != null ?: $this->grid->put($type, new Collectable());
+
+        $this->grid->get($type)->put($element->key, $element);
+    }
 
     private function reduce(string $position, callable $then){
         $this->grid->get($position) == null ?: $then();
     }
 
-
     private function castToInput(){
         $casted = null;
-
         return $casted;
+    }
+
+    public function build(){
+        return $this->form;
     }
 
 

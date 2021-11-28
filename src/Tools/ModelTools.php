@@ -12,23 +12,28 @@ class ModelTools
      * @return Collectable
      */
     public static function getFields(Model ...$model){
-        $fields = new Collectable();
+        $types = new Collectable();
         foreach ($model as $m){
-            $fieldMeta = new Collectable();
+            $hiddens = new Collectable($m->getHidden());
             foreach ($m->getFillable() as $fillable){
                 $field = $m->getConnection()->getDoctrineColumn($m->getTable(),$fillable);
-                $fieldMeta->put($fillable, [
+                //initialize type array
+                $types->get($field->getType()->getName()) != null ?: $types->put($field->getType()->getName(),new Collectable());
+                $types->get($field->getType()->getName())->put($fillable, [
                     'type'      =>  $field->getType()->getName(),
                     'length'    =>  $field->getLength(),
                     'nullable'  =>  $field->getNotnull(),
                     'default'   =>  $field->getDefault(),
-                    'name'      =>  $field->getName()
+                    'name'      =>  $field->getName(),
+                    'model'     =>  $m->getTable(),
+                    'hidden'    =>  is_int($hiddens->search($fillable)) == true
                 ]);
             }
-            $fields->put($m->getTable(),$fieldMeta);
         }
-        return $fields;
+        return  $types;
     }
+
+
 
     public static function castToElementType(string $type){
         dd($type);
